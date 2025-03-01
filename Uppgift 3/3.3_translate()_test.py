@@ -1,3 +1,4 @@
+## this file is a test/demonstration of the function translate(), which is used in uppgift 3.3.py 
 def translate(txt: str, var:str) -> str: ## translates expression so that eval() can compute expression
     txt = txt.replace(" ", "") ## ensures there are no spaces
     txt = txt.replace("^","**")
@@ -34,8 +35,8 @@ test3 = "x^2 + 2^(3+1)"
 test4 = "(x^2-1)^2 - ((2x-1)x)4"
 test5 = "2^(x+1)"
 
-print(f"Test 1: {translate(test1,"x")}")
-print(f"Test 2: {translate(test2,"x")}")
-print(f"Test 3: {translate(test3,"x")}")
-print(f"Test 4: {translate(test4,"x")}")
-print(f"Test 5: {translate(test5,"x")}")
+print(f"Test 1: {translate(test1,"x")}") # return 5*x**2
+print(f"Test 2: {translate(test2,"x")}") # return (x+1)*(x-1)
+print(f"Test 3: {translate(test3,"x")}") # return x**2+2**(3+1)
+print(f"Test 4: {translate(test4,"x")}") # return (x**2-1)**2-((2*x-1)*x)*4
+print(f"Test 5: {translate(test5,"x")}") # return 2**(x+1)
