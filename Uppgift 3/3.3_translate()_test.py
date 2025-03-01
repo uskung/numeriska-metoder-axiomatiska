@@ -32,11 +32,11 @@ def translate(txt: str, var:str) -> str: ## translates expression so that eval()
 test1 = "5x^2"
 test2 = "(x+1)(x-1)"
 test3 = "x^2 + 2^(3+1)"
-test4 = "(x^2-1)^2 - ((2x-1)x)4"
+test4 = "(a^2-1)^2 - ((2a-1)a)4"
 test5 = "2^(x+1)"
 
 print(f"Test 1: {translate(test1,"x")}") # return 5*x**2
 print(f"Test 2: {translate(test2,"x")}") # return (x+1)*(x-1)
 print(f"Test 3: {translate(test3,"x")}") # return x**2+2**(3+1)
-print(f"Test 4: {translate(test4,"x")}") # return (x**2-1)**2-((2*x-1)*x)*4
+print(f"Test 4: {translate(test4,"a")}") # return (a**2-1)**2-((2*a-1)*a)*4
 print(f"Test 5: {translate(test5,"x")}") # return 2**(x+1)
