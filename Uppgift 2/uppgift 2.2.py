@@ -10,6 +10,9 @@ approx = 0
 approx_previous = 1
 
 precision = 0
+
+error = 0.0000001 # can be changed if more precision is required
+precision_requirement = 100 # can be changed if more precision is required
 while True:
     total += 1
     x = random.uniform(0,1)
@@ -18,11 +21,11 @@ while True:
         hits += 1
     approx_previous = approx
     approx = hits/total
-    if abs(approx-approx_previous) < 0.0000001: ## checks if approx and previous approx don't divert too much
+    if abs(approx-approx_previous) < error: ## checks if approx and previous approx don't divert too much
         precision += 1
     else:
         precision = 0
-    if precision >= 100:## if for 100 times approx had not diverted too much, break loop
+    if precision >= precision_requirement:## if for 100 times approx had not diverted too much, break loop
         break
 
 print(f"Approximationen är ≈ {approx:.5f}")
