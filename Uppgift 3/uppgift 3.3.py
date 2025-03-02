@@ -1,6 +1,6 @@
 ##uppgift 3.3
 # use eval() to compute function
-import math 
+from math import *
 import readline
 
 def translate(txt: str, var:str) -> str: ## translates expression so that eval() can compute expression
@@ -10,6 +10,7 @@ def translate(txt: str, var:str) -> str: ## translates expression so that eval()
 
     def insert_multiplication(expression): ## inserts "*" between characters
         constant = {"0","1","2","3","4","5","6","7","8","9"}
+        signs = {"+","-","*","/","^",")","("}
         counter = 1
         while counter < len(expression):
             element = expression[counter]
@@ -25,6 +26,9 @@ def translate(txt: str, var:str) -> str: ## translates expression so that eval()
                 expression.insert(counter,"*")
                 continue
             if element in constant and (element_before == var or element_before == ")"): #e.g. turns x4 to x*4
+                expression.insert(counter,"*")
+                continue
+            if (element not in constant and element not in signs and element != var) and (element_before in constant or element_before == var): #e.g. turns 3sqrt(x) to 3*sqrt(x)
                 expression.insert(counter,"*")
                 continue
             counter += 1 # counter goes only up if every check has been passed
@@ -51,7 +55,7 @@ print(f"Den översatta koden blev: {expression_translated}") # not compulsory fo
 
 # approximates the integral
 def f(x:float) -> float:
-    return eval(expression_translated, {var: x})
+    return eval(expression_translated, {var: x}, globals()) ## globals() ensures that math functions can be read, e.g. sqrt(x) works. 
 def riemann_midpoint(x1:float, x2:float, rectangles:int) -> float:
     delta_x = (x2 - x1) / rectangles
     area = 0
@@ -60,8 +64,11 @@ def riemann_midpoint(x1:float, x2:float, rectangles:int) -> float:
         h = f((x1 + (i + 0.5) * delta_x)) ## height of rectangle
         area += b*h
     return area
-x1 = float(input("Första integrationsgränsen: "))
-x2 = float(input("Andra integrationsgränsen: "))
+
+x1 = input("Första integrationsgränsen: ")
+x1 = eval(x1) ## makes it possible to e.g. enter x1 = 3pi
+x2 = input("Andra integrationsgränsen: ")
+x2 = eval(x2) ## makes it possible to e.g. enter x2 = 3pi
 rectangles = int(input("Antal rektanglar: "))
 area = riemann_midpoint(x1,x2,rectangles)
-print(f"Integralen av funktionen {txt} mellan {x1} och {x2} är: {area:.8f}")
+print(f"Integralen av funktionen {txt} mellan {x1} och {x2} är: {round(area,8)}")
