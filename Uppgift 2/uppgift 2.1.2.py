@@ -12,8 +12,8 @@ circle = 0 ## number of coordinates inside the circle
 
 precision = 0 # counter 
 
-error = 0.0000001
-precision_requirement = 100
+error = 0.0000001 # can be changed if more precision is required
+precision_requirement = 100 # can be changed if more precision is required
 while True:
     total += 1
     x = random.uniform(-1,1)
