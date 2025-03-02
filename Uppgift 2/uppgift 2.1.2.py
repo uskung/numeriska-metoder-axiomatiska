@@ -11,6 +11,9 @@ approx_previous = 0
 circle = 0 ## number of coordinates inside the circle 
 
 precision = 0 # counter 
+
+error = 0.0000001
+precision_requirement = 100
 while True:
     total += 1
     x = random.uniform(-1,1)
@@ -19,11 +22,11 @@ while True:
         circle += 1
     approx_previous = approx
     approx = 4*(circle)/total
-    if abs(approx-approx_previous) < 0.0000001: ## checks if approx and previous approx don't divert too much
+    if abs(approx-approx_previous) < error: ## checks if approx and previous approx don't divert too much
         precision += 1
     else:
         precision = 0
-    if precision >= 100:## if for 100 times approx had not diverted too much, break loop
+    if precision >= precision_requirement:## if for 100 times approx had not diverted too much, break loop
         break
 
 end_time = time.time() 
